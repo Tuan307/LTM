@@ -25,7 +25,7 @@ public class loginDAOimpl extends baseDAOimpl implements LoginDAO{
         try {
             Connection conn = getConnection();
             StringBuilder query = new StringBuilder();
-            query.append("SELECT * FROM users u");
+            query.append("SELECT * FROM messenger.users u");
             query.append("WHERE u.userName = "+ username +" ");
             query.append("AND u.passWord ");
             PreparedStatement ps = null;

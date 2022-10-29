@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author AdamKyle
  */
-public class Users implements Serializable{
+public class Users implements Serializable {
+
     private int userId;
     private String userName;
     private String passWord;
@@ -20,6 +21,20 @@ public class Users implements Serializable{
     private String lastName;
     private String email;
     private String address;
+
+    public Users(int userId, String userName, String passWord, int state, String firstName, String lastName, String email, String address) {
+        this.userId = userId;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.state = state;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Users() {
+    }
 
     public int getUserId() {
         return userId;
@@ -85,7 +100,7 @@ public class Users implements Serializable{
         this.address = address;
     }
 
-    public Object[] toObjectListFriend(){
-        return new Object[]{firstName+" "+lastName};
+    public Object[] toObjectListFriend() {
+        return new Object[]{firstName + " " + lastName};
     }
 }

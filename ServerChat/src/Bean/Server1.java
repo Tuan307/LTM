@@ -42,12 +42,16 @@ public class Server1 {
                 oos = new ObjectOutputStream(clientSocket.getOutputStream());
                 usersDTO userLogin =(usersDTO) ois.readObject();
                 Users user = usersDAO.checkLogin(userLogin.getUserName(), userLogin.getPassWord());
+                if(user == null){
+                    user = new Users(-1,"A", "A", 0, "A", "A", "A", "A");
+                }
                 userLogin.setClientSocket(clientSocket);
                 userLogin.setFirstName(user.getFirstName());
                 userLogin.setLastName(user.getLastName());
                 listUsersLogin.add(userLogin);
                 System.out.println(userLogin.getClientSocket().getInetAddress()+":"+userLogin.getClientSocket().getPort()+" "+userLogin.getUserName() + " connected");
                 oos.writeObject(user);
+                System.out.println("Yes");
                 ThreadTest a = new ThreadTest();
                 a.setUser(user);
                 a.setClientSocket(clientSocket);
@@ -61,8 +65,6 @@ public class Server1 {
         }
         catch (IOException ex) {
             Logger.getLogger(Server1.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex){
-            System.out.println("avc");
         }
     }
     private static void white() {

@@ -21,6 +21,22 @@ public class Users implements Serializable{
     private String email;
     private String address;
 
+    public Users(int userId, String userName, String passWord, int state, String firstName, String lastName, String email, String address) {
+        this.userId = userId;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.state = state;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Users() {
+    }
+
+   
+
     public int getUserId() {
         return userId;
     }

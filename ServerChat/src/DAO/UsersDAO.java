@@ -25,6 +25,10 @@ import java.util.logging.Logger;
  * @author AdamKyle
  */
 public class UsersDAO {
+
+    public UsersDAO() {
+    }
+    
     public Users checkLogin(String user, String pass){
         try {
             StringBuilder query = new StringBuilder();
