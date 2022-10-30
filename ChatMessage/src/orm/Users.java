@@ -100,7 +100,7 @@ public class Users implements Serializable {
         this.address = address;
     }
 
-    public Object[] toObjectListFriend() {
+    public Object[] toObjectListFriend() {//Hiển thị tên và last name
         return new Object[]{firstName + " " + lastName};
     }
 }
