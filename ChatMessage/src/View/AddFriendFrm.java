@@ -190,7 +190,7 @@ public class AddFriendFrm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Added friends - Now you can find them in friendlist"
+                "Added - Now you can find them in friendlist"
             }
         ) {
             boolean[] canEdit = new boolean [] {
