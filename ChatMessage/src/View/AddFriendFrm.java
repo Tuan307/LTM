@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,13 +37,15 @@ public class AddFriendFrm extends javax.swing.JFrame {
     private ChatOutThread cot ;
     private Users user;
     private Users userAdd;
-    private List<Users> results, added;
+    private List<Users> results;
+    private ArrayList<Users> added;
     private MessageData mess;
     private ObjectInputStream ois;
     public AddFriendFrm() {
         initComponents();
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Add Friend");
+        this.added = new ArrayList<>();
     }
     private void clickList(){
         jTable_Result.addMouseListener(new MouseAdapter() {
@@ -50,6 +53,7 @@ public class AddFriendFrm extends javax.swing.JFrame {
                 if(e.getClickCount() ==2){
                     //MessageData messListMess = new MessageData();
                     Users userRe = results.get(jTable_Result.getSelectedRow());
+                    results.remove(userRe);
                     if(userRe.getUserId() == userAdd.getUserId()){
                         jLabel2_note.setForeground(Color.red);
                         jLabel2_note.setText("Friend Exist");
@@ -65,6 +69,7 @@ public class AddFriendFrm extends javax.swing.JFrame {
                     cot.setMessage(mess);
                     cot.resume();
                     jLabel2_note.setText("Add success!");
+                    updateResult();
                     updateAddedTable();
                     //setVisible(false);
                     //JOptionPane.showMessageDialog(null, StringUtility.NOTE_ADD_FRIEND_SUCCESS, "Add Friend ", HEIGHT);
@@ -83,7 +88,7 @@ public class AddFriendFrm extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel) jTable_Added.getModel();
         dtm.getDataVector().removeAllElements();
-        if(results == null || results.size() <= 0) return;
+        if(added == null || added.size() <= 0) return;
         for(Users userFriend : added){
             dtm.addRow(userFriend.toObjectListFriend());
         }
